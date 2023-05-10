@@ -1,0 +1,52 @@
+default:
+  constraints:
+    product_plugin: threescale
+    limits:
+      always_install_cluster: false
+      max_aws_clusters: 3
+      max_os_load_percentage: 100
+      max_products_on_cluster: 2
+    context:
+      always_create_namespace: false
+      cluster_namespace: "product-by-pipeline"
+      cluster_url: ""
+  tests:
+    run_tests: true
+    jenkins_context:
+      server:
+        uri: "http://login:password@localhost:8080"
+      job:
+        name: "prod-jobs/operator/testAll"
+        cluster_param: "OpenshiftContext__apiUrl"
+        namespace_param: "TestsuiteContext__namespace"
+    jenkins_report:
+      send_report: true
+      email_address: "yourmail@redhat.com"
+      send_from_login: "pipeline@gmail.com"
+      send_from_password: "password123"
+  modules:
+    - cluster-management:
+        bash: "osia"
+        inline_params:
+          - install
+        params:
+          cluster-name: ocp410-os
+          installer-version: stable-4.10
+          cloud: openstack
+          dns-provider: nsupdate
+          osp-image-unique: null
+          cloud-env: psi
+          v: null
+          help: null
+    - free-deployer-workplace:
+        bash: "free-deployer"
+        inline_params:
+          - process
+        params:
+          config-name: basic_aws
+          overlay-configs:
+            - secrets.yaml
+            - nightly.yaml
+            - 2_13.yaml
+          param:
+            - project.enable=false

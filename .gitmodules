@@ -1,0 +1,8 @@
+[submodule "cluster-management"]
+	path = modules/cluster-management
+	url = git@gitlab.cee.redhat.com:3scale-qe/infra/cluster-management.git
+	branch = master
+[submodule "free-deployer-workplace"]
+	path = modules/free-deployer-workplace
+	url = git@gitlab.cee.redhat.com:3scale-qe/infra/free-deployer-workplace.git
+	branch = averevki/jenkins-test

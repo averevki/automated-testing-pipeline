@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+apache-airflow = "==2.5.3"
+apache-airflow-providers-jenkins = "*"
+dynaconf = "*"
+openstacksdk = "*"
+python-novaclient = "*"
+openshift-client = "*"
+weakget = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
